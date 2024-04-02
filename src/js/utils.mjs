@@ -1,23 +1,13 @@
-// wrapper for querySelector...returns matching element
-export function qs(selector, parent = document) {
-  return parent.querySelector(selector);
-}
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
+const form = document.getElementById('form');
 
-// retrieve data from localstorage
-export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
-// save data to local storage
-export function setLocalStorage(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
-}
-// set a listener for both touchend and click
-export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
-    event.preventDefault();
-    callback();
-  });
-  qs(selector).addEventListener("click", callback);
-}
+form.addEventListener('submit', function (e) {
+    e.preventDefault;
+    const payload = new FormData(form);
+    console.log([...payload]);
+    fetch('http://httpbin.org/post', {
+        method: "POST",
+        body: payload,
+    })
+    then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
