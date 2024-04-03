@@ -1,6 +1,6 @@
-import Task from './Task.mjs';
-import Plan from './Plan.mjs';
-
+import Task from "./Task.mjs";
+import Plan from "./Plan.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function moveTaskUp() {
     //selects the entire row
@@ -207,8 +207,8 @@ function submitFormEventListener(form, url) {
             )
             tasks.push(task)
         }
-        console.log("HERE")
-        console.log(...tasks);
+
+        // console.log(...tasks);
 
         const plan = new Plan(
             planName,
@@ -216,6 +216,11 @@ function submitFormEventListener(form, url) {
         )
 
         let payload = JSON.stringify(plan);
+
+        let plans = []
+        plans = getLocalStorage("plans");
+        plans.push(payload);
+        setLocalStorage("plans", plans);
 
         fetch(url, {
             method: "POST",
@@ -237,6 +242,7 @@ function refresh() {
 function constructor() {
     addTask();
     refresh();
+    setLocalStorage("plans", []);
 }
 
 submitFormEventListener(document.querySelector("form"), "http://httpbin.org/post");
