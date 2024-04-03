@@ -18,10 +18,30 @@
 }
 
 body {
-  /* margin: 0; */
+  margin: 0;
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: var(--dark-grey);
+  /* background-color: #303030;
+  color: white; */
+}
+
+.progress-bar{
+  position: fixed;
+  display: flex;
+  bottom: 0px;
+  width: 100%;
+  height: 1rem;
+}
+
+.progress-bar-plan{
+  background-color: red;
+  width: 100%;
+}
+
+.progress-bar-review{
+  background-color: green;
+  width: 100%;
 }
 
 @media screen and (min-width: 500px) {

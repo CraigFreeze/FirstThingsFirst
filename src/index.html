@@ -10,6 +10,15 @@
 
 <body>
   <header class="divider">
+    <nav>
+      <ul>
+        <li><a href="">FAQs</a></li>
+        <li><a href="">Roles</a></li>
+        <li><a href="">Plan</a></li>
+        <li><a href="">Review</a></li>
+        <li><a href="">Inspiration (reviews, and quotes)</a></li>
+      </ul>
+    </nav>
   </header>
   <main class="divider">
     <section>
@@ -34,26 +43,10 @@
         <li class="role">Team Member</li>
         <li class="role">Healthy Individual</li>
       </ul>
-      <ul>
-        <li draggable="true">Husband</li>
-        <li class="role">Future Father</li>
-        <li class="role">Church Member</li>
-        <li class="role">Employer/employee</li>
-        <li class="role">Student</li>
-        <li class="role">Friend</li>
-        <li class="role">Extended Family Member (Brother, Son)</li>
-        <li class="role">Language Learner</li>
-        <li class="role">Technology User (Appropriate Media)</li>
-        <li class="role">Minister</li>
-        <li class="role">Community Member</li>
-        <li class="role">Citizen</li>
-        <li class="role">Team Member</li>
-        <li class="role">Healthy Individual</li>
-      </ul>
     </section>
     <section>
       <header>
-        <h2>Action Items</h2>
+        <h2>Brain Storm</h2>
         <nav>
           <div class="add-task">Add</div>
           <div class="save-task">Save</div>
@@ -61,6 +54,7 @@
         </nav>
       </header>
       <form action="" id="taskForm">
+        <label for="planName">Plan Name:<input id="planName" name="planName" type="text"></label>
         <table id="taskTable">
           <thead>
             <tr>
@@ -76,6 +70,8 @@
           <tbody>
           </tbody>
         </table>
+        <!-- ADD THE ABILITY TO ORDER THE JSON TASK OBJECTS -->
+        <input type="submit" value="Publish">
         <!-- <div class="task">
                 <input class="task-name" type="text">
                 <input class="task-importance" id="number" type="number">
@@ -87,6 +83,10 @@
       </form>
     </section>
   </main>
+  <div class="progress-bar">
+    <div class="progress-bar-plan"></div>
+    <div class="progress-bar-review"></div>
+  </div>
   <footer>&copy;NOT a real business</footer>
   <script src="/js/main.js"></script>
 </body>

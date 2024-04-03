@@ -3,27 +3,38 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   root: "src/",
+  server: {
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: "https://zenquotes.io/api/random",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }
+    }
 
+  },
   build: {
     outDir: "../dist",
+    proxy: {
+      '/api': {
+        target: "https://zenquotes.io/api/random",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }
+    },
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
-        cart: resolve(__dirname, "src/cart/index.html"),
-        checkout: resolve(__dirname, "src/checkout/index.html"),
-        product1: resolve(
-          __dirname,
-          "src/product_pages/cedar-ridge-rimrock-2.html"
-        ),
-        product2: resolve(__dirname, "src/product_pages/marmot-ajax-3.html"),
-        product3: resolve(
-          __dirname,
-          "src/product_pages/northface-alpine-3.html"
-        ),
-        product4: resolve(
-          __dirname,
-          "src/product_pages/northface-talus-4.html"
-        ),
+        inspiration: resolve(__dirname, "src/inspiration/index.html"),
+        roles: resolve(__dirname, "src/roles/index.html"),
+        proxy: {
+          '/api': {
+            target: "https://zenquotes.io/api/random",
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/api/, ''),
+          }
+        },
       },
     },
   },

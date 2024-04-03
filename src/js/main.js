@@ -26,6 +26,7 @@ function addMoveTaskEventListeners() {
     }
 }
 
+
 function newTask() {
     // Wrapper
     let newRow = document.createElement("tr");
@@ -36,6 +37,7 @@ function newTask() {
     let taskRole = document.createElement("input");
     taskRole.type = "text";
     taskRole.className = "task-role";
+    // "this" comes from the event listener
     taskRole.value = (this.textContent == undefined || this.textContent == "Add") ? "" : this.textContent;
     newCellRole.append(taskRole);
     newRow.append(newCellRole);
@@ -92,6 +94,14 @@ function newTask() {
     //--Up Down
     newRow.append(newCellUpDown);
 
+    // Remove Task
+    let newCellRemove = document.createElement("td");
+    let removeTask = document.createElement("a");
+    removeTask.className = "remove-task";
+    removeTask.textContent = "Remove";
+    newCellRemove.append(removeTask);
+    newRow.append(newCellRemove);
+
     // Calendar Task
     let newCellCalendar = document.createElement("td");
     let calendarTask = document.createElement("a");
@@ -114,24 +124,25 @@ function newTask() {
     refresh()
 }
 
-// // Build inventory items into HTML table components and inject into DOM 
-// function addNewTask(data) {
-//     // Iterate over all vehicles in the array and put each in a row 
-//     data.forEach(function (element) {
-//         console.log(element.inv_id + ", " + element.inv_model);
-//         dataTable += `<tr><td>${element.inv_make} ${element.inv_model}</td>`;
-//         dataTable += `<td><a href='/inv/edit/${element.inv_id}' title='Click to update'>Modify</a></td>`;
-//         dataTable += `<td><a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a></td></tr>`;
-//     })
-//     // Display the contents in the Inventory Management view 
-//     inventoryDisplay.append();
-// }
 
 function addNewTaskListeners() {
     let addTask = document.querySelectorAll(".add-task");
     for (var i = 0; i < addTask.length; i++) {
         addTask[i].addEventListener('click', newTask)
     };
+}
+
+function addRemoveTaskListeners() {
+    let removeTask = document.querySelectorAll(".remove-task");
+    for (var i = 0; i < removeTask.length; i++) {
+        removeTask[i].addEventListener('click', deleteTask)
+    };
+}
+
+function deleteTask() {
+    //Selects the entire row
+    const wrapper = this.parentElement.parentElement;
+    wrapper.remove()
 }
 
 function addRoleListeners() {
@@ -165,6 +176,7 @@ function refresh() {
     addNewTaskListeners();
     addMoveTaskEventListeners();
     addRoleListeners();
+    addRemoveTaskListeners()
 }
 
 function constructor() {
