@@ -1,8 +1,9 @@
 {
   "name": "FirstThingsFirst",
   "version": "3.0.0",
+  "type": "module",
   "description": "WDD 330 Final Project",
-  "main": "main.js",
+  "main": "main.mjs",
   "scripts": {
     "start": "vite",
     "build": "vite build --emptyOutDir",

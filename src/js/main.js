@@ -1,3 +1,7 @@
+import Task from './Task.mjs';
+import Plan from './Plan.mjs';
+
+
 function moveTaskUp() {
     //selects the entire row
     const wrapper = this.parentElement.parentElement;
@@ -27,7 +31,7 @@ function addMoveTaskEventListeners() {
 }
 
 
-function newTask() {
+function addTask() {
     // Wrapper
     let newRow = document.createElement("tr");
     newRow.className = "task";
@@ -37,8 +41,10 @@ function newTask() {
     let taskRole = document.createElement("input");
     taskRole.type = "text";
     taskRole.className = "task-role";
+    taskRole.name = "taskRole";
     // "this" comes from the event listener
-    taskRole.value = (this.textContent == undefined || this.textContent == "Add") ? "" : this.textContent;
+    taskRole.value = (this == undefined || this.textContent == "Add") ? "" : this.textContent;
+
     newCellRole.append(taskRole);
     newRow.append(newCellRole);
 
@@ -47,6 +53,7 @@ function newTask() {
     let taskName = document.createElement("input");
     taskName.type = "text";
     taskName.className = "task-name";
+    taskName.name = "taskName";
     newCellTaskName.append(taskName);
     newRow.append(newCellTaskName);
 
@@ -56,6 +63,7 @@ function newTask() {
     let taskImportance = document.createElement("input");
     taskImportance.type = "number";
     taskImportance.className = "task-importance";
+    taskImportance.name = "taskImportance";
     newCellImportance.append(taskImportance);
     newRow.append(newCellImportance);
 
@@ -65,6 +73,7 @@ function newTask() {
     let taskUrgency = document.createElement("input");
     taskUrgency.type = "number";
     taskUrgency.className = "task-urgency";
+    taskUrgency.name = "taskUrgency";
     newCellUrgency.append(taskUrgency);
     newRow.append(newCellUrgency);
 
@@ -73,6 +82,7 @@ function newTask() {
     let taskDescription = document.createElement("input");
     taskDescription.type = "text";
     taskDescription.className = "task-description";
+    taskDescription.name = "taskDescription";
     newCellDescription.append(taskDescription);
     newRow.append(newCellDescription);
 
@@ -128,7 +138,7 @@ function newTask() {
 function addNewTaskListeners() {
     let addTask = document.querySelectorAll(".add-task");
     for (var i = 0; i < addTask.length; i++) {
-        addTask[i].addEventListener('click', newTask)
+        addTask[i].addEventListener('click', addTask)
     };
 }
 
@@ -148,7 +158,7 @@ function deleteTask() {
 function addRoleListeners() {
     let roleAddTask = document.querySelectorAll(".role");
     for (var i = 0; i < roleAddTask.length; i++) {
-        roleAddTask[i].addEventListener('click', newTask)
+        roleAddTask[i].addEventListener('click', addTask)
     };
 }
 
@@ -172,17 +182,67 @@ function convertDuration(duration) {
     return { hour: deltaHours, minutes: deltaMinutes };
 }
 
+function submitFormEventListener(form, url) {
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const prepayload = new FormData(form)
+
+        let planName = prepayload.get("planName")
+        let taskRole = prepayload.getAll("taskRole")
+        let taskName = prepayload.getAll("taskName")
+        let taskImportance = prepayload.getAll("taskImportance")
+        let taskUrgency = prepayload.getAll("taskUrgency")
+        let taskDescription = prepayload.getAll("taskDescription")
+
+        let tasks = [];
+
+        for (let i = 0; i < taskRole.length; i++) {
+            const task = new Task(
+                taskRole[i],
+                taskName[i],
+                taskImportance[i],
+                taskUrgency[i],
+                taskDescription[i]
+            )
+            tasks.push(task)
+        }
+        console.log("HERE")
+        console.log(...tasks);
+
+        const plan = new Plan(
+            planName,
+            tasks
+        )
+
+        let payload = JSON.stringify(plan);
+
+        fetch(url, {
+            method: "POST",
+            body: payload,
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+    })
+}
+
 function refresh() {
     addNewTaskListeners();
     addMoveTaskEventListeners();
     addRoleListeners();
-    addRemoveTaskListeners()
+    addRemoveTaskListeners();
 }
 
 function constructor() {
-    newTask();
+    addTask();
     refresh();
 }
 
+submitFormEventListener(document.querySelector("form"), "http://httpbin.org/post");
+
 constructor();
 
+
+
+let test = new Task("", "", "", "", "");
