@@ -215,20 +215,27 @@ function submitFormEventListener(form, url) {
             tasks
         )
 
+        
+
+        let plansJSON = getLocalStorage("plans");
+        console.log(plansJSON);
+        plansJSON = JSON.parse(plansJSON)
+
+        console.log(plansJSON.plans)
+        plansJSON.plans.push(plan)
+        console.log(plansJSON.plans)
+
+        setLocalStorage("plans", JSON.stringify(plansJSON));
+
+
         let payload = JSON.stringify(plan);
-
-        let plans = []
-        plans = getLocalStorage("plans");
-        plans.push(payload);
-        setLocalStorage("plans", plans);
-
         fetch(url, {
             method: "POST",
             body: payload,
         })
             .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
+            // .then(data => console.log(data))
+            // .catch(err => console.log(err))
     })
 }
 
@@ -242,7 +249,7 @@ function refresh() {
 function constructor() {
     addTask();
     refresh();
-    setLocalStorage("plans", []);
+    setLocalStorage("plans", JSON.stringify({ "plans": [] }));
 }
 
 submitFormEventListener(document.querySelector("form"), "http://httpbin.org/post");
