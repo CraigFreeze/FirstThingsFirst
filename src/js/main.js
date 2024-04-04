@@ -215,8 +215,6 @@ function submitFormEventListener(form, url) {
             tasks
         )
 
-        
-
         let plansJSON = getLocalStorage("plans");
         console.log(plansJSON);
         plansJSON = JSON.parse(plansJSON)
