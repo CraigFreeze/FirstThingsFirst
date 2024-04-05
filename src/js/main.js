@@ -247,7 +247,10 @@ function refresh() {
 function constructor() {
     addTask();
     refresh();
-    setLocalStorage("plans", JSON.stringify({ "plans": [] }));
+    console.log(getLocalStorage("plans"));
+    if (getLocalStorage("plans")===null){
+        setLocalStorage("plans", JSON.stringify({ "plans": [] }));
+    }
 }
 
 submitFormEventListener(document.querySelector("form"), "http://httpbin.org/post");
