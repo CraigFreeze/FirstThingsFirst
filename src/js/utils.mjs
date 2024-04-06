@@ -9,15 +9,21 @@ export function setLocalStorage(key, data) {
 }
 
 export function renderTemplate(wrapper, data, templateFn, next) {
+    console.log("data:")
+    console.log(data)
     const htmlItems = data.map((item) => templateFn(item));
-    wrapper.innerHTML = htmlItems.join("");
+    if (wrapper === "return") {
+        return htmlItems.join("");
+    } else {
+        wrapper.innerHTML = htmlItems.join("");
+    }
 }
 
 // ! BUILD THE NEXT FUNCTION SO THAT YOU CAN ADD A FUNCTION TO THE END OF THE NEXT
 
 export function taskTemplate(task) {
     const template =
-    `
+        `
         <ul>
             <li>${task.taskRole}</li>
             <li>${task.taskName}</li>
@@ -30,14 +36,26 @@ export function taskTemplate(task) {
 }
 
 export function planTemplate(plan) {
-    const template =
+    let templateTasks = "";
+    console.log("TASKs:");
+    console.log(plan.tasks)
+    for (let i = 0; i < plan.tasks.length; i++) {
+        console.log("TASK:");
+        console.log(plan.tasks[i])
+        templateTasks += renderTemplate("return", plan.tasks[i], taskTemplate);
+    }
+
+    const templatePlan =
         `
     <div class=${plan.planName}>
         <h2>${plan.planName}</h2>
-        <ul>
-        </ul>
+        <div>
+            ${templateTasks}   
+        </div>
     </div>
     `;
-    return template;
+
+
+    return templatePlan;
 }
 
