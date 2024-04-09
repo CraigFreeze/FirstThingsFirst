@@ -6,7 +6,6 @@ function moveTaskUp() {
     //selects the entire row
     const wrapper = this.parentElement.parentElement;
 
-    console.log(wrapper.previousElementSibling)
     if (wrapper.previousElementSibling)
         wrapper.parentNode.insertBefore(wrapper, wrapper.previousElementSibling);
 }
@@ -18,7 +17,6 @@ function moveTaskDown() {
     if (wrapper.nextElementSibling)
         wrapper.parentNode.insertBefore(wrapper.nextElementSibling, wrapper);
 }
-
 
 function addMoveTaskEventListeners() {
     let upLink = document.querySelectorAll(".move-up");
@@ -134,7 +132,6 @@ function addTask() {
     refresh()
 }
 
-
 function addNewTaskListeners() {
     let addTask = document.querySelectorAll(".add-task");
     for (var i = 0; i < addTask.length; i++) {
@@ -216,12 +213,9 @@ function submitFormEventListener(form, url) {
         )
 
         let plansJSON = getLocalStorage("plans");
-        console.log(plansJSON);
         plansJSON = JSON.parse(plansJSON)
 
-        console.log(plansJSON.plans)
         plansJSON.plans.push(plan)
-        console.log(plansJSON.plans)
 
         setLocalStorage("plans", JSON.stringify(plansJSON));
 
@@ -247,16 +241,18 @@ function refresh() {
 function constructor() {
     addTask();
     refresh();
-    console.log(getLocalStorage("plans"));
     if (getLocalStorage("plans")===null){
-        setLocalStorage("plans", JSON.stringify({ "plans": [] }));
+        setLocalStorage("plans", JSON.stringify([{ "plans": [] }]));
+    }
+    if (getLocalStorage("roles")===null){
+        setLocalStorage("roles", JSON.stringify([]));
+    }
+    if(getLocalStorage("visited")===null){
+        console.log("Welcome for the first time!")
+        setLocalStorage("visited", true);
     }
 }
 
 submitFormEventListener(document.querySelector("form"), "http://httpbin.org/post");
 
 constructor();
-
-
-
-let test = new Task("", "", "", "", "");
