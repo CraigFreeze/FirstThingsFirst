@@ -6,22 +6,21 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/api': {
+      "/api": {
         target: "https://zenquotes.io/api/random",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      }
-    }
-
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   },
   build: {
     outDir: "../dist",
     proxy: {
-      '/api': {
+      "/api": {
         target: "https://zenquotes.io/api/random",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      }
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
     },
     rollupOptions: {
       input: {
@@ -31,11 +30,11 @@ export default defineConfig({
         review: resolve(__dirname, "src/review/index.html"),
         register: resolve(__dirname, "src/register/index.html"),
         proxy: {
-          '/api': {
+          "/api": {
             target: "https://zenquotes.io/api/random",
             changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/api/, ''),
-          }
+            rewrite: (path) => path.replace(/^\/api/, ""),
+          },
         },
       },
     },

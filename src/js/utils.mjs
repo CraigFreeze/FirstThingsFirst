@@ -23,7 +23,7 @@ export function camelize(str) {
     }).replace(/\s+/g, '');
 }
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
+const delay = async (ms) =>  new Promise(res => setTimeout(res, ms));
 
 export async function successfulRes(redirect, message, data = "") {
     console.log(message, data);
@@ -31,7 +31,6 @@ export async function successfulRes(redirect, message, data = "") {
     await delay(5000);
     window.location.href = redirect;
 }
-
 
 export function getCalendarLink(name = "", description) {
     let calendarUrl = `http://www.google.com/calendar/event?action=TEMPLATE&text=${name}&details=${description}`;

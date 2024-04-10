@@ -1,59 +1,69 @@
-import { getLocalStorage, renderTemplate, camelize, setLocalStorage, successfulRes } from "./utils.mjs";
+import {
+  getLocalStorage,
+  renderTemplate,
+  camelize,
+  setLocalStorage,
+  successfulRes,
+} from "./utils.mjs";
 
-window.onbeforeunload = function (e) {
-    return "Sure you want to leave?";
-}
+window.onbeforeunload = function () {
+  return "Sure you want to leave?";
+};
 
 let rolesJSON = getLocalStorage("roles");
-let roles = JSON.parse(rolesJSON)
+let roles = JSON.parse(rolesJSON);
 
 // Expands the plan and the associated tasks into an html template.
 function inputRolesTemplate(role) {
-    // for (let i = 0; i < roles.length; i++) {
-    let template =
-        `<input class="roles" aria-label="Role" type="text" name=${camelize(role.replace(/[^0-9a-z]/gi, ''))} value="${role}">`
-    // }
-    return template;
+  // for (let i = 0; i < roles.length; i++) {
+  let template = `<input class="roles" aria-label="Role" type="text" name=${camelize(
+    role.replace(/[^0-9a-z]/gi, "")
+  )} value="${role}">`;
+  // }
+  return template;
 }
 
-let form = document.querySelector("form")
-let inputWrapper = document.querySelector(".roles-wrapper")
+let form = document.querySelector("form");
+let inputWrapper = document.querySelector(".roles-wrapper");
 let addRole = document.querySelector("#addRole");
 let newRoleName = 0;
-addRole.addEventListener("click", (e) => {
-    let input = document.createElement("input");
-    input.name = newRoleName;
-    input.classList.add("roles")
-    input.type = "text";
-    newRoleName++;
-    inputWrapper.appendChild(input);
-})
+addRole.addEventListener("click", () => {
+  let input = document.createElement("input");
+  input.name = newRoleName;
+  input.classList.add("roles");
+  input.type = "text";
+  newRoleName++;
+  inputWrapper.appendChild(input);
+});
 
 form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let rolesElements = document.querySelectorAll(".roles")
-    let roles = []
-    rolesElements.forEach((role) => {
-        if (!role.value == false) {
-            roles.push(role.value)
-        }
-    });
-    setLocalStorage("roles", JSON.stringify(roles));
+  e.preventDefault();
+  let rolesElements = document.querySelectorAll(".roles");
+  let roles = [];
+  rolesElements.forEach((role) => {
+    if (!role.value == false) {
+      roles.push(role.value);
+    }
+  });
 
-    let rolesJSON = getLocalStorage("roles");
-    let newRoles = JSON.parse(rolesJSON)
-    renderTemplate(wrapper, newRoles, inputRolesTemplate)
-    successfulRes("/plan/index.html", "Saved! You'll be Redirected to the planning phase shortly!");
-})
+  setLocalStorage("roles", JSON.stringify(roles));
 
-form.addEventListener("change", (e) => {
-    console.log("NOT SAVED!")
-})
+  let rolesJSON = getLocalStorage("roles");
+  let newRoles = JSON.parse(rolesJSON);
+  renderTemplate(wrapper, newRoles, inputRolesTemplate);
+  successfulRes(
+    "/plan/index.html",
+    "Saved! You'll be Redirected to the planning phase shortly!"
+  );
+});
 
-let wrapper = document.querySelector(".roles-wrapper")
-renderTemplate(wrapper, roles, inputRolesTemplate)
+form.addEventListener("change", () => {
+  console.log("NOT SAVED!");
+});
+
+let wrapper = document.querySelector(".roles-wrapper");
+renderTemplate(wrapper, roles, inputRolesTemplate);
 
 // document.querySelector("#refreshRoles").addEventListener("click", (e) => {
 
 // })
-

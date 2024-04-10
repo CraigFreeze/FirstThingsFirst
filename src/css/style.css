@@ -19,7 +19,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-family: var(--font-body);
   font-size: var(--font-base);
 }
@@ -57,7 +57,8 @@ nav {
   top: 0;
   z-index: 999;
   margin-bottom: 1rem;
-  box-shadow: rgba(225, 225, 225, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(225, 225, 225, 0.15) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .nav-wrapper {
@@ -75,7 +76,11 @@ nav {
 
 #logo {
   background-color: var(--primary-color);
-  background-image: linear-gradient(to top, var(--primary-color) 0%, var(--light-grey) 100%);
+  background-image: linear-gradient(
+    to top,
+    var(--primary-color) 0%,
+    var(--light-grey) 100%
+  );
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -90,7 +95,11 @@ nav {
 
 #logo:hover {
   background-color: var(--secondary-color);
-  background-image: linear-gradient(to top, var(--secondary-color) 0%, var(--light-grey) 100%);
+  background-image: linear-gradient(
+    to top,
+    var(--secondary-color) 0%,
+    var(--light-grey) 100%
+  );
 }
 
 /* .fa-gem {
@@ -165,19 +174,18 @@ main {
   width: 100%;
 }
 
-
 div.alert {
   background-color: var(--primary-color);
   color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .25rem;
+  padding: 0.25rem;
   margin: 1rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
-.alert>div:nth-child(2) {
+.alert > div:nth-child(2) {
   width: 2rem;
   font-size: 2rem;
   aspect-ratio: 1 / 1;
@@ -186,7 +194,7 @@ div.alert {
   justify-content: center;
 }
 
-.alert>div:nth-child(2):hover {
+.alert > div:nth-child(2):hover {
   background-color: #bf8553;
   border-radius: 1rem;
 }
@@ -245,17 +253,18 @@ section#wrapper {
   margin: 1rem;
   background-color: var(--primary-color);
   color: black;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 19px 38px, rgba(0, 0, 0, 0.32) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 19px 38px,
+    rgba(0, 0, 0, 0.32) 0px 15px 12px;
 }
 
 section#wrapper div {
   background-color: var(--tertiary-color);
 
   border-radius: 1rem;
-  padding: 1rem .5rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 19px 38px, rgba(0, 0, 0, 0.12) 0px 15px 12px;
+  padding: 1rem 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 19px 38px,
+    rgba(0, 0, 0, 0.12) 0px 15px 12px;
 }
-
 
 section#wrapper div ul {
   padding-left: 2rem;
@@ -263,7 +272,6 @@ section#wrapper div ul {
 }
 
 /* END REVIEW PAGE */
-
 
 div.site-vision {
   display: flex;
@@ -282,7 +290,8 @@ div.site-vision .card .card-img-container {
   max-height: 30vh;
   z-index: 99;
   border-radius: 1rem 1rem 0 0;
-  box-shadow: rgba(193, 193, 193, 0.25) 0px 14px 28px, rgba(15, 15, 15, 0.25) 0px 10px 10px;
+  box-shadow: rgba(193, 193, 193, 0.25) 0px 14px 28px,
+    rgba(15, 15, 15, 0.25) 0px 10px 10px;
 }
 
 div.site-vision .card img.card-image {
@@ -291,7 +300,8 @@ div.site-vision .card img.card-image {
   padding: 1rem;
   border-radius: 1rem 1rem 0 0;
   background-color: var(--tertiary-color);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 div.site-vision .card div.card-content {
@@ -306,13 +316,15 @@ div.site-vision .card div.card-content {
   width: 30vh;
   min-height: 170px;
   background-color: var(--secondary-color);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 div.site-vision .card div.card-content a.button {
   margin-top: 1rem;
   height: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px,
+    rgba(0, 0, 0, 0.12) 0px 10px 10px;
 }
 
 form.roles-form {
@@ -330,7 +342,8 @@ form.roles-form {
 
 div.btns-group .button {
   width: 30vw;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px,
+    rgba(0, 0, 0, 0.12) 0px 10px 10px;
 }
 
 .roles-wrapper {
@@ -342,23 +355,24 @@ div.btns-group .button {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   margin: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .roles-wrapper li.role,
-.roles-wrapper input[type=text],
-.roles-wrapper input[type=email] {
+.roles-wrapper input[type="text"],
+.roles-wrapper input[type="email"] {
   display: flex;
   justify-content: center;
   align-items: center;
   list-style: none;
   /* border: 1px solid black; */
   background-color: var(--primary-color);
-  padding: .5rem;
+  padding: 0.5rem;
   color: black;
-  border-radius: .5rem;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 0.5rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 li.role:hover,
@@ -368,8 +382,8 @@ li.role:hover,
   transition: all 0.3s ease;
 }
 
-.roles-wrapper input[type=text],
-.roles-wrapper input[type=email] {
+.roles-wrapper input[type="text"],
+.roles-wrapper input[type="email"] {
   width: 100%;
   min-width: 300px;
   background-color: white;
@@ -391,7 +405,8 @@ li.role:hover,
 
 .roles-wrapper.subscribe .button {
   width: 100%;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px,
+    rgba(0, 0, 0, 0.12) 0px 10px 10px;
 }
 
 /* division */
@@ -414,8 +429,8 @@ li.role:hover,
 }
 
 #taskForm input {
-  border-radius: .5rem;
-  padding: .5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 
   /* 
   display: flex;
@@ -427,8 +442,8 @@ li.role:hover,
 }
 
 #taskForm input {
-  border-radius: .5rem;
-  padding: .5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 
   /* 
   display: flex;
@@ -443,16 +458,16 @@ li.role:hover,
   width: 400px;
   min-width: 300px;
   height: 43px;
-  padding: .5rem;
+  padding: 0.5rem;
   border: 2px solid #000;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   background-color: #f8f8f8;
   font-size: 16px;
   resize: horizontal;
 }
 
 td {
-  padding: .25rem .5rem;
+  padding: 0.25rem 0.5rem;
 }
 
 .xScrollable {
@@ -492,7 +507,7 @@ footer {
     position: absolute;
     top: -1000px;
     opacity: 1;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
     height: 50vh;
     z-index: -1;
   }
@@ -501,7 +516,7 @@ footer {
     background: #131313;
     top: 100%;
     opacity: 1;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
     z-index: 99;
     height: 50vh;
     font-size: 1.6rem;
@@ -587,7 +602,6 @@ footer {
     grid-template-columns: 1fr;
     align-items: center;
   }
-
 
   div.site-vision .card {
     width: 100%;
