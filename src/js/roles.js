@@ -13,7 +13,7 @@ function inputRolesTemplate(role) {
 }
 
 let form = document.querySelector("form")
-let inputWrapper = document.querySelector(".input-wrapper")
+let inputWrapper = document.querySelector(".roles-wrapper")
 let addRole = document.querySelector("#addRole");
 let newRoleName = 0;
 addRole.addEventListener("click", (e) => {
