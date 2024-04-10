@@ -261,7 +261,7 @@ function submitFormEventListener(form, url) {
             body: payload,
         })
             .then(res => res.json())
-            .then(data => successfulRes(data))
+            .then(data => successfulRes("/review/index.html", "Successfully Saved to Server! You'll be redirected shortly.", data))
             .catch(err => console.log(err))
     })
 }

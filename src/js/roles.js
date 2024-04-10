@@ -1,4 +1,4 @@
-import { getLocalStorage, renderTemplate, camelize, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, renderTemplate, camelize, setLocalStorage, successfulRes } from "./utils.mjs";
 
 window.onbeforeunload = function (e) {
     return "Sure you want to leave?";
@@ -43,7 +43,7 @@ form.addEventListener("submit", (e) => {
     let rolesJSON = getLocalStorage("roles");
     let newRoles = JSON.parse(rolesJSON)
     renderTemplate(wrapper, newRoles, inputRolesTemplate)
-    console.log("Saved!")
+    successfulRes("/plan/index.html", "Saved! You'll be Redirected to the planning phase shortly!");
 })
 
 form.addEventListener("change", (e) => {

@@ -165,6 +165,32 @@ main {
   width: 100%;
 }
 
+
+div.alert {
+  background-color: var(--primary-color);
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .25rem;
+  margin: 1rem;
+  border-radius: .5rem;
+}
+
+.alert>div:nth-child(2) {
+  width: 2rem;
+  font-size: 2rem;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert>div:nth-child(2):hover {
+  background-color: #bf8553;
+  border-radius: 1rem;
+}
+
 .sections {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -440,10 +466,11 @@ footer {
   /* position: fixed; */
   /* bottom: 0; */
   width: 100%;
-  height: 2.5rem;
+  height: 5rem;
   background: var(--black);
   z-index: 999;
   margin-top: auto;
+  padding: 1rem;
 }
 
 @media screen and (max-width: 960px) {

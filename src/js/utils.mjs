@@ -23,29 +23,45 @@ export function camelize(str) {
     }).replace(/\s+/g, '');
 }
 
-export function successfulRes(data) {
-    console.log("Successfully Saved to Server!", data);
-    window.location.href = "/index.html";
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+export async function successfulRes(redirect, message, data = "") {
+    console.log(message, data);
+    alertMessage(message);
+    await delay(5000);
+    window.location.href = redirect;
 }
 
-export function getCalendarLink(name = "", description, duration = 1, startHour = 9, startMinutes = 0) {
-    // defaults
-    const date = new Date();
-    const year = date.getYear();
-    const month = date.getMonth();
-    const day = date.getDay();
 
-    // let durationDict = convertDuration(duration);
-    let endMinutes = 0;
-    let endHour = 4;
-
-    let calendarUrl = `http://www.google.com/calendar/event?action=TEMPLATE
-    &text=${name}
-    &dates=${year}${month}${day}
-    T${startHour}${startMinutes * 60}
-    /
-    ${year}${month}${day}
-    T${endHour}${endMinutes
-    }details=${description}`; // location=123%20Main%20St%2C%20Example%2C%20NY
+export function getCalendarLink(name = "", description) {
+    let calendarUrl = `http://www.google.com/calendar/event?action=TEMPLATE&text=${name}&details=${description}`;
+    calendarUrl = calendarUrl.replace(/ /g, "%20");
     return calendarUrl;
+}
+
+export function alertMessage(message, scroll = true) {
+    // create element to hold our alert
+    const main = document.querySelector("main");
+    const alert = document.createElement("div");
+    const alertContent = document.createElement("div");
+    const alertClose = document.createElement("div");
+
+    // add a class to style the alert
+    alert.classList.add("alert");
+    alertContent.textContent = message;
+    alertClose.innerHTML = "&times;";
+
+    // add a listener to the alert to see if they clicked on the X
+    // if they did then remove the child
+    alertClose.addEventListener("click", function (e) {
+        alert.remove();
+    })
+    // add the alert to the top of main
+    alert.append(alertContent);
+    alert.append(alertClose);
+    main.prepend(alert);
+
+    // Scroll to top of screen
+    if (scroll)
+        window.scrollTo(0, 0);
 }

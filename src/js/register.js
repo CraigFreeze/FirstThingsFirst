@@ -17,7 +17,7 @@ form.addEventListener("submit", (e) => {
         body: payload,
     })
         .then(res => res.json())
-        .then(data => successfulRes(data))
+        .then(data => successfulRes("/index.html", "Successfully Saved to Server! You'll be redirected to home page shortly!", data))
         .catch(err => console.log(err))
 });
 

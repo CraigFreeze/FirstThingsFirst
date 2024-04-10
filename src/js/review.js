@@ -26,7 +26,8 @@ function planTemplate(plan) {
     for (let i = 0; i < plan.tasks.length; i++) {
         templatePlan +=
             `
-            <li>Task: #${i + 1} - <a href = ${getCalendarLink(plan.tasks[i].taskName + " " + plan.tasks[i].taskImportance + plan.tasks[i].taskUrgency, "" + plan.tasks[i].taskDescription + " Role:" + plan.tasks[i].taskRole)}>Calendar Link</a></li>
+            <li>Task: #${i + 1} - 
+            <a href = ${getCalendarLink(plan.tasks[i].taskName + " " + plan.tasks[i].taskImportance + plan.tasks[i].taskUrgency, "Role:" + plan.tasks[i].taskRole + ". Description: " + plan.tasks[i].taskDescription)}>Calendar Link</a></li>
                 <ul>`
         if (!plan.tasks[i].taskRole == false) {
             templatePlan += `<li><span class="task-subdescription">Role:</span> ${plan.tasks[i].taskRole}</li>`
