@@ -31,7 +31,7 @@
             <a href="/review/index.html" class="nav-links"> Review </a>
           </li>
           <li class="nav-cta">
-            <a href="/inspiration/index.html" class="button"> Sign Up </a>
+            <a href="/register/index.html" class="button"> Subscribe </a>
           </li>
         </ul>
       </div>
@@ -39,55 +39,67 @@
   </header>
   <main>
     <h1>Plan</h1>
+    <section id="quote-wrapper">
+      <h2>Inspirational Quote</h2>
+      <div class="roles-wrapper inspiration">
+        <div id="quote" class="quote"></div>
+        <div id="quote-author" class="quote"></div>
+        <div class="btns-group">
+          <button id="newQuote" class="button">New Quote</button>
+        </div>
+      </div>
+    </section>
     <section>
       <h2>Roles</h2>
       <!-- Add the ability to click on one of the li items (the roles, and automatically triggers add-task, with focus already set) -->
-      <ul class="roles-wrapper">
+      <ul id="rolesWrapper" class="roles-wrapper">
       </ul>
     </section>
     <section>
       <h2>Brain Storm</h2>
       <form id="taskForm">
-        <label for="planName">Plan Name: <input id="planName" name="planName" type="text"></label>
-        <table id="taskTable">
-          <thead>
-            <tr>
-              <th>Role</th>
-              <th>Task</th>
-              <th>Importance</th>
-              <th>Urgency</th>
-              <th>Description</th>
-              <th>Move</th>
-              <th>Calendar</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+        <label for="planName">Plan Name: <input id="planName" name="planName" type="text" required></label>
+        <div class="xScrollable">
+          <table id="taskTable">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Role</th>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Importance</th>
+                <th>Urgency</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <datalist id="markers">
+            <option value="0"></option>
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+          </datalist>
+        </div>
         <!-- ADD THE ABILITY TO ORDER THE JSON TASK OBJECTS -->
         <div class="btns-group">
           <div class="add-task button">Add</div>
           <input type="submit" class="button" value="Publish">
           <!-- maybe add a prioritize button that orders by urgency than importance -->
         </div>
-
-
-        <!-- <div class="task">
-                <input class="task-name" type="text">
-                <input class="task-importance" id="number" type="number">
-                <input class="task-urgency" id="number" type="number">
-                <input class="task-description" type="text">
-                <a class='move-up' href='#'>🔼</a>
-                <a class='move-down' href='#'>🔽</a>
-            </div> -->
       </form>
     </section>
   </main>
-  <div class="progress-bar">
+  <!-- <div class="progress-bar">
     <div class="progress-bar-plan"></div>
     <div class="progress-bar-review"></div>
-  </div>
-  <footer>&copy;NOT a real business</footer>
+  </div> -->
+  <footer>
+    Craig Freeze // WDD 230 // Weekly Planner App // First Things First // &copy; 2024
+  </footer>
 </body>
 
 </html>

@@ -1,24 +1,32 @@
-import { getLocalStorage, renderTemplate } from "./utils.mjs";
+import { getLocalStorage, renderTemplate, getCalendarLink } from "./utils.mjs";
 
 let plansJSON = getLocalStorage("plans");
 plansJSON = JSON.parse(plansJSON)
 let plans = plansJSON.plans
 
 
+// Calendar Task
+// let newCellCalendar = document.createElement("td");
+// let calendarTask = document.createElement("a");
+// calendarTask.className = "calendarBtn";
+// calendarTask.textContent = "Calendar";
+// calendarTask.href = getCalendarLink("Read Book", "Do this once a day", 2.5, 10, 30); // Automatically pass in fields to href.
+// newCellCalendar.append(calendarTask);
+// newRow.append(newCellCalendar);
+
 let wrapper = document.querySelector("#wrapper")
 // Expands the plan and the associated tasks into an html template.
 function planTemplate(plan) {
     let templatePlan =
         `
-    <div class=${plan.planName}>
+    <div>
         <h2>${plan.planName}</h2>
-        <div>
             <ul>`
 
     for (let i = 0; i < plan.tasks.length; i++) {
         templatePlan +=
             `
-            <li>Task Number ${i}:</li>
+            <li>Task: #${i + 1} - <a href = ${getCalendarLink(plan.tasks[i].taskName + " " + plan.tasks[i].taskImportance + plan.tasks[i].taskUrgency, "" + plan.tasks[i].taskDescription + " Role:" + plan.tasks[i].taskRole)}>Calendar Link</a></li>
                 <ul>`
         if (!plan.tasks[i].taskRole == false) {
             templatePlan += `<li><span class="task-subdescription">Role:</span> ${plan.tasks[i].taskRole}</li>`
@@ -35,13 +43,12 @@ function planTemplate(plan) {
         if (!plan.tasks[i].taskDescription == false) {
             templatePlan += `<li><span class="task-subdescription">Description:</span> ${plan.tasks[i].taskDescription}</li>`
         }
-                    
+
         templatePlan += `</ul>`
     }
 
     templatePlan += `
             </ul>
-        </div>
     </div>
     `;
 

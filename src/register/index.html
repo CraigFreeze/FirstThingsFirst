@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Home</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/header.js" defer></script>
+    <script src="../js/register.js" type="module" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/index.html" id="logo">First Things First</a>
+                <div class="hamburger-toggle" id="hamburger-menu">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+                <ul class="navigation">
+                    <li class="nav-item">
+                        <a href="/roles/index.html" class="nav-links"> Roles </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/plan/index.html" class="nav-links"> Plan </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/review/index.html" class="nav-links"> Review </a>
+                    </li>
+                    <li class="nav-cta">
+                        <a href="/register/index.html" class="button"> Subscribe </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1>Subscribe</h1>
+        <div class="sections">
+            <section>
+                <h2>Subscribe to Email List</h2>
+                <form id="emailListForm" class="roles-wrapper subscribe">
+                    <label for="firstName">First Name: <input id="firstName" name="firstName" type="text"
+                            pattern="[a-zA-Z]*"></label>
+                    <label for="email">Email: <input id="email" name="email" type="email" required></label>
+                    <input type="hidden" class="currentDateInput">
+                    <input type="submit" value="Subscribe" class="button">
+                </form>
+            </section>
+            <section>
+                <h2>Reviews</h2>
+                <div class="roles-wrapper reviews">
+                    <div id="leftReview">&lt;</div>
+                    <div id="reviewContainer"></div>
+                    <div id="rightReview">&gt;</div>
+                </div>
+            </section>
+            <section class="explanation">
+                <h2>How to use First Things First</h2>
+                <div class="roles-wrapper inspiration">
+                    <h3>Phase 1: Recording Your Roles</h3>
+                    <ol>
+                        <li>Access the App: Open the planning app on in your browser.</li>
+                        <li>Identify Your Roles: Think about the various roles you play in your life.</li>
+                        <li>Record Your Roles: Enter each role you've identified into the app.</li>
+                    </ol>
+
+                    <h3>Phase 2: Planning Your Week</h3>
+                    <ol>
+                        <li>Navigate to Weekly Planning Section: Locate the weekly planning section within the app.</li>
+                        <li>Review Your Roles: Consider all aspects of your life as you plan.</li>
+                        <li>Set Priorities: Determine your priorities for the week ahead.</li>
+                        <li>Use Task Lists or Calendars: Utilize app features to organize your plans.</li>
+                        <li>Be Realistic: Ensure your plans are achievable.</li>
+                    </ol>
+
+                    <h3>Phase 3: Reviewing Your Week</h3>
+                    <ol>
+                        <li>Reflect on Your Plans: Revisit the plans you made earlier.</li>
+                        <li>Assess Your Progress: Evaluate how well you adhered to your plans.</li>
+                        <li>Adjust as Needed: Make necessary adjustments based on your review.</li>
+                        <li>Learn and Improve: Use insights gained to enhance future planning efforts.</li>
+                    </ol>
+
+                    <p>By following these three phases, you can make the most out of a 3-phase planning app to stay
+                        organized, focused, and productive in both your personal and professional life.</p>
+                </div>
+            </section>
+            <section class="biography">
+                <h2>Inspiration</h2>
+                <div class="roles-wrapper inspiration">
+                    With inspiration from 7 Habits of Highly Effective People. Craig created this weekly planner that is
+                    based on your local machine. Read this brief description about 7-Habits' weekly planner from
+                    chatGPT:
+                    <br>
+                    <br>
+                    The 7 Habits Weekly Planner is a tool designed to help individuals organize and prioritize their
+                    tasks and activities in alignment with Stephen Covey's "The 7 Habits of Highly Effective People"
+                    philosophy. This planner typically incorporates Covey's principles into its structure, focusing on
+                    key habits such as being proactive, beginning with the end in mind, prioritizing tasks, seeking
+                    first to understand, and synergizing.
+
+                    The planner usually provides sections for users to list their goals, tasks, and priorities for the
+                    week, along with spaces for reflection and evaluating progress. It often emphasizes the importance
+                    of scheduling activities based on values and long-term goals rather than simply reacting to urgent
+                    demands.
+
+                    Overall, the 7 Habits Weekly Planner serves as a practical tool to help individuals manage their
+                    time effectively, align their actions with their values, and work towards their personal and
+                    professional objectives in a structured and intentional manner.
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        Craig Freeze // WDD 230 // Weekly Planner App // First Things First // &copy; 2024
+    </footer>
+</body>
+
+</html>

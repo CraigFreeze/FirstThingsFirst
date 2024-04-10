@@ -29,6 +29,7 @@ export default defineConfig({
         plan: resolve(__dirname, "src/plan/index.html"),
         roles: resolve(__dirname, "src/roles/index.html"),
         review: resolve(__dirname, "src/review/index.html"),
+        register: resolve(__dirname, "src/register/index.html"),
         proxy: {
           '/api': {
             target: "https://zenquotes.io/api/random",

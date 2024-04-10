@@ -1,5 +1,9 @@
 import { getLocalStorage, renderTemplate, camelize, setLocalStorage } from "./utils.mjs";
 
+window.onbeforeunload = function (e) {
+    return "Sure you want to leave?";
+}
+
 let rolesJSON = getLocalStorage("roles");
 let roles = JSON.parse(rolesJSON)
 

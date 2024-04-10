@@ -24,6 +24,10 @@
   font-size: var(--font-base);
 }
 
+html {
+  background-color: var(--black);
+}
+
 /* .progress-bar{
   
   position: fixed;
@@ -159,8 +163,16 @@ body {
 
 main {
   width: 100%;
-  padding-bottom: 2.5rem;
 }
+
+.sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* .explanation{
+  grid-column: -1 / 1;
+} */
 
 h1 {
   font-size: 2rem;
@@ -175,7 +187,6 @@ h2 {
 }
 
 section {
-  margin-bottom: 1rem;
   padding: 1rem;
 }
 
@@ -187,6 +198,46 @@ section ol {
   padding-left: 5rem;
   margin: 1rem 0 1rem 0;
 }
+
+section .reviews {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* REVIEW PAGE */
+section#wrapper h2 {
+  padding-left: 1rem;
+}
+
+section#wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: var(--primary-color);
+  color: black;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 19px 38px, rgba(0, 0, 0, 0.32) 0px 15px 12px;
+}
+
+section#wrapper div {
+  background-color: var(--tertiary-color);
+
+  border-radius: 1rem;
+  padding: 1rem .5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 19px 38px, rgba(0, 0, 0, 0.12) 0px 15px 12px;
+}
+
+
+section#wrapper div ul {
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+}
+
+/* END REVIEW PAGE */
+
 
 div.site-vision {
   display: flex;
@@ -218,6 +269,7 @@ div.site-vision .card img.card-image {
 }
 
 div.site-vision .card div.card-content {
+  z-index: 999;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -225,8 +277,8 @@ div.site-vision .card div.card-content {
   background-color: 121212;
   color: white;
   padding: 1rem;
-  aspect-ratio: 1 / 0.6;
   width: 30vh;
+  min-height: 170px;
   background-color: var(--secondary-color);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
@@ -247,24 +299,30 @@ form.roles-form {
 .btns-group {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 1rem;
 }
 
 div.btns-group .button {
   width: 30vw;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
 }
 
 .roles-wrapper {
   background-color: var(--tertiary-color);
+  color: black;
   border-radius: 1rem;
   padding: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   margin: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
 }
 
 .roles-wrapper li.role,
-.roles-wrapper input[type=text] {
+.roles-wrapper input[type=text],
+.roles-wrapper input[type=email] {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -277,15 +335,43 @@ div.btns-group .button {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.roles-wrapper input[type=text] {
+li.role:hover,
+#wrapper div:hover {
+  background: var(--secondary-color);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.roles-wrapper input[type=text],
+.roles-wrapper input[type=email] {
   width: 100%;
   min-width: 300px;
   background-color: white;
 }
 
+.roles-wrapper .quote {
+  padding-left: 3rem;
+}
+
+.roles-wrapper.inspiration,
+.roles-wrapper.subscribe {
+  display: flex;
+  flex-direction: column;
+}
+
+.roles-wrapper.subscribe input {
+  display: block;
+}
+
+.roles-wrapper.subscribe .button {
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
+}
+
 /* division */
 #taskForm {
   background-color: var(--tertiary-color);
+  color: black;
   border-radius: 1rem;
   padding: 1rem;
   margin: 1rem;
@@ -315,11 +401,36 @@ div.btns-group .button {
 }
 
 #taskForm input {
+  border-radius: .5rem;
+  padding: .5rem;
+
   /* 
-  width: 100%;
-  min-width: 300px;
-  background-color: white; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  color: black;
   */
+}
+
+#taskForm textarea {
+  width: 400px;
+  min-width: 300px;
+  height: 43px;
+  padding: .5rem;
+  border: 2px solid #000;
+  border-radius: .5rem;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: horizontal;
+}
+
+td {
+  padding: .25rem .5rem;
+}
+
+.xScrollable {
+  overflow-x: scroll;
 }
 
 footer {
@@ -432,6 +543,10 @@ footer {
 
   main {
     margin: 0;
+  }
+
+  .sections {
+    grid-template-columns: 1fr;
   }
 
   h1,

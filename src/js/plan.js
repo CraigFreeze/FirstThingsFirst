@@ -1,6 +1,38 @@
 import Task from "./Task.mjs";
 import Plan from "./Plan.mjs";
-import { getLocalStorage, setLocalStorage, renderTemplate } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, renderTemplate, successfulRes } from "./utils.mjs";
+
+window.onbeforeunload = function(e){
+    return "Sure you want to leave?";
+}
+
+//! ////////////////////////////////////////////////
+//! ////////////////////////////////////////////////
+
+// THIS IS A PROXY (SEE VITE CONFIG)
+const api_proxy_url = "/api";
+
+async function getQuote(url) {
+    const response = await fetch(url);
+    var data = await response.json();
+    return await data[0];
+}
+
+function renderQuote(quote) {
+    // console.log(quote)
+    document.querySelector("#quote").textContent = quote.q;
+    document.querySelector("#quote-author").textContent = `-- ${quote.a}`;
+}
+
+renderQuote(await getQuote(api_proxy_url));
+
+document.querySelector("#newQuote").addEventListener("click", async (e) => {
+    renderQuote(await getQuote(api_proxy_url));
+})
+
+//! ////////////////////////////////////////////////
+//! ////////////////////////////////////////////////
+
 
 function moveTaskUp() {
     //selects the entire row
@@ -34,6 +66,22 @@ function addTask() {
     let newRow = document.createElement("tr");
     newRow.className = "task";
 
+    //Up Down
+    let newCellUpDown = document.createElement("td");
+    // -----Move Up
+    let moveUp = document.createElement("div");
+    moveUp.className = "move-up";
+    moveUp.innerHTML = "&#9650;";
+    newCellUpDown.append(moveUp);
+
+    // -----Move Down
+    let moveDown = document.createElement("div");
+    moveDown.className = "move-down";
+    moveDown.innerHTML = "&#9660;";
+    newCellUpDown.append(moveDown);
+    //--Up Down
+    newRow.append(newCellUpDown);
+
     // Role Input
     let newCellRole = document.createElement("td");
     let taskRole = document.createElement("input");
@@ -51,17 +99,38 @@ function addTask() {
     let newCellTaskName = document.createElement("td");
     let taskName = document.createElement("input");
     taskName.type = "text";
+    taskName.required = true;
     taskName.className = "task-name";
     taskName.name = "taskName";
     taskName.ariaLabel = "Task Name";
     newCellTaskName.append(taskName);
     newRow.append(newCellTaskName);
 
+    // Description Input
+    let newCellDescription = document.createElement("td");
+    let taskDescription = document.createElement("textarea");
+    // taskDescription.type = "text";
+    taskDescription.className = "task-description";
+    taskDescription.name = "taskDescription";
+    taskDescription.ariaLabel = "Task Description";
+    newCellDescription.append(taskDescription);
+    newRow.append(newCellDescription);
+    // let newCellDescription = document.createElement("td");
+    // let taskDescription = document.createElement("input");
+    // taskDescription.type = "text";
+    // taskDescription.className = "task-description";
+    // taskDescription.name = "taskDescription";
+    // taskDescription.ariaLabel = "Task Description";
+    // newCellDescription.append(taskDescription);
+    // newRow.append(newCellDescription);
 
     // Importance Input
     let newCellImportance = document.createElement("td");
     let taskImportance = document.createElement("input");
-    taskImportance.type = "number";
+    taskImportance.type = "range";
+    taskImportance.min = "0";
+    taskImportance.max = "5";
+    taskImportance.setAttribute("list", "markers");
     taskImportance.className = "task-importance";
     taskImportance.name = "taskImportance";
     taskImportance.ariaLabel = "Task Importance";
@@ -72,57 +141,23 @@ function addTask() {
     // Urgency Input
     let newCellUrgency = document.createElement("td");
     let taskUrgency = document.createElement("input");
-    taskUrgency.type = "number";
+    taskUrgency.type = "range";
+    taskUrgency.min = "0";
+    taskUrgency.max = "5";
+    taskUrgency.setAttribute("list", "markers");
     taskUrgency.className = "task-urgency";
     taskUrgency.name = "taskUrgency";
     taskUrgency.ariaLabel = "Task Urgency";
     newCellUrgency.append(taskUrgency);
     newRow.append(newCellUrgency);
 
-    // Description Input
-    let newCellDescription = document.createElement("td");
-    let taskDescription = document.createElement("input");
-    taskDescription.type = "text";
-    taskDescription.className = "task-description";
-    taskDescription.name = "taskDescription";
-    taskDescription.ariaLabel = "Task Description";
-    newCellDescription.append(taskDescription);
-    newRow.append(newCellDescription);
-
-    //Up Down
-    let newCellUpDown = document.createElement("td");
-    // -----Move Up
-    let moveUp = document.createElement("a");
-    moveUp.className = "move-up";
-    moveUp.textContent = "🔼";
-    moveUp.href = "#";
-    newCellUpDown.append(moveUp);
-
-    // -----Move Down
-    let moveDown = document.createElement("a");
-    moveDown.className = "move-down";
-    moveDown.textContent = "🔽";
-    moveDown.href = "#";
-    newCellUpDown.append(moveDown);
-    //--Up Down
-    newRow.append(newCellUpDown);
-
     // Remove Task
     let newCellRemove = document.createElement("td");
     let removeTask = document.createElement("a");
     removeTask.className = "remove-task";
-    removeTask.textContent = "Remove";
+    removeTask.innerHTML = "&#x1F5D1;";
     newCellRemove.append(removeTask);
     newRow.append(newCellRemove);
-
-    // Calendar Task
-    let newCellCalendar = document.createElement("td");
-    let calendarTask = document.createElement("a");
-    calendarTask.className = "calendarBtn";
-    calendarTask.textContent = "Calendar";
-    calendarTask.href = getCalendarLink("Read Book", "Do this once a day", 2.5, 10, 30); // Automatically pass in fields to href.
-    newCellCalendar.append(calendarTask);
-    newRow.append(newCellCalendar);
 
     // Add Task Input
     // let addTask = document.createElement("div");
@@ -166,20 +201,6 @@ function addRoleListeners() {
     };
 }
 
-function getCalendarLink(name = "", description, duration = 1, startHour = 9, startMinutes = 0) {
-    // defaults
-    const date = new Date();
-    const year = date.getYear();
-    const month = date.getMonth();
-    const day = date.getDay();
-
-    let durationDict = convertDuration(duration);
-    let endMinutes = startMinutes + durationDict.minutes;
-    let endHour = startHour + durationDict.hour;
-    let calendarUrl = `http://www.google.com/calendar/event?action=TEMPLATE&text=${name}&dates=${year}${month}${day}T${startHour}${startMinutes * 60}/${year}${month}${day}T${endHour}${endMinutes}details=${description}`; // location=123%20Main%20St%2C%20Example%2C%20NY
-    return calendarUrl;
-}
-
 function convertDuration(duration) {
     let deltaHours = Math.floor(duration * 60);
     let deltaMinutes = (duration - deltaHours) * 60;
@@ -221,8 +242,15 @@ function submitFormEventListener(form, url) {
 
         let plansJSON = getLocalStorage("plans");
         plansJSON = JSON.parse(plansJSON)
+        let plans = plansJSON.plans
 
-        plansJSON.plans.push(plan)
+        // console.log("plansJSON");
+        // console.log(plansJSON);
+
+        // console.log("plans");
+        // console.log(plans);
+
+        plans.push(plan)
 
         setLocalStorage("plans", JSON.stringify(plansJSON));
 
@@ -233,10 +261,11 @@ function submitFormEventListener(form, url) {
             body: payload,
         })
             .then(res => res.json())
-        // .then(data => console.log(data))
-        // .catch(err => console.log(err))
+            .then(data => successfulRes(data))
+            .catch(err => console.log(err))
     })
 }
+
 
 // Expands the plan and the associated tasks into an html template.
 function liRolesTemplate(role) {
@@ -256,12 +285,13 @@ function refresh() {
 function constructor() {
     let rolesJSON = getLocalStorage("roles");
     let roles = JSON.parse(rolesJSON);
-    const ulRoles = document.querySelector(".roles-wrapper");
+    const ulRoles = document.querySelector("#rolesWrapper");
     renderTemplate(ulRoles, roles, liRolesTemplate);
     addTask();
     refresh();
+    let array = [];
     if (getLocalStorage("plans") === null) {
-        setLocalStorage("plans", JSON.stringify([{ "plans": [] }]));
+        setLocalStorage("plans", JSON.stringify({ "plans": array }));
     }
     if (getLocalStorage("roles") === null) {
         setLocalStorage("roles", JSON.stringify([]));
@@ -275,3 +305,4 @@ function constructor() {
 submitFormEventListener(document.querySelector("form"), "http://httpbin.org/post");
 
 constructor();
+
