@@ -2,92 +2,110 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sleep Outside | Home</title>
-  <link rel="stylesheet" href="/css/style.css" />
-  <script src="/js/main.js" type="module" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/header.js" defer></script>
 </head>
 
 <body>
-  <header class="divider">
-    <nav>
-      <ul>
-        <li><a href="">FAQs</a></li>
-        <li><a href="/roles/index.html">Roles</a></li>
-        <li><a href="">Plan</a></li>
-        <li><a href="/review/index.html">Review</a></li>
-        <li><a href="/inspiration/index.html">Inspiration (reviews, and quotes)</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main class="divider">
-    <section>
-      <h1>First Things First</h1>
-    </section>
-    <section>
-      <h2>Roles</h2>
-      <!-- Add the ability to click on one of the li items (the roles, and automatically triggers add-task, with focus already set) -->
-      <ul>
-        <li class="role">Husband</li>
-        <li class="role">Future Father</li>
-        <li class="role">Church Member</li>
-        <li class="role">Employer/employee</li>
-        <li class="role">Student</li>
-        <li class="role">Friend</li>
-        <li class="role">Extended Family Member (Brother, Son)</li>
-        <li class="role">Language Learner</li>
-        <li class="role">Technology User (Appropriate Media)</li>
-        <li class="role">Minister</li>
-        <li class="role">Community Member</li>
-        <li class="role">Citizen</li>
-        <li class="role">Team Member</li>
-        <li class="role">Healthy Individual</li>
-      </ul>
-    </section>
-    <section>
-      <header>
-        <h2>Brain Storm</h2>
+    <header>
         <nav>
-          <div class="add-task">Add</div>
-          <div>Prioritize</div> <!-- This will sort by importance than urgency -->
+            <div class="nav-wrapper">
+                <a href="/" id="logo">First Things First</a>
+                <div class="hamburger-toggle" id="hamburger-menu">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+                <ul class="navigation">
+                    <li class="nav-item">
+                        <a href="/roles/index.html" class="nav-links"> Roles </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/plan/index.html" class="nav-links"> Plan </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/review/index.html" class="nav-links"> Review </a>
+                    </li>
+                    <li class="nav-cta">
+                        <a href="/inspiration/index.html" class="button"> Sign Up </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
-      </header>
-      <form id="taskForm">
-        <label for="planName">Plan Name:<input id="planName" name="planName" type="text"></label>
-        <table id="taskTable">
-          <thead>
-            <tr>
-              <th>Role</th>
-              <th>Task</th>
-              <th>Importance</th>
-              <th>Urgency</th>
-              <th>Description</th>
-              <th>Move</th>
-              <th>Calendar</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-        <!-- ADD THE ABILITY TO ORDER THE JSON TASK OBJECTS -->
-        <input type="submit" value="Publish">
-        <!-- <div class="task">
-                <input class="task-name" type="text">
-                <input class="task-importance" id="number" type="number">
-                <input class="task-urgency" id="number" type="number">
-                <input class="task-description" type="text">
-                <a class='move-up' href='#'>🔼</a>
-                <a class='move-down' href='#'>🔽</a>
-            </div> -->
-      </form>
-    </section>
-  </main>
-  <div class="progress-bar">
-    <div class="progress-bar-plan"></div>
-    <div class="progress-bar-review"></div>
-  </div>
-  <footer>&copy;NOT a real business</footer>
+    </header>
+    <main>
+        <h1>Welcome</h1>
+        <section>
+            <h2>Getting Started</h2>
+            <div class="site-vision">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="/images/roles.svg" alt="" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        Record your most prevelant roles that you would like to plan your week around.
+                        <a href="roles/index.html" class="button">Roles</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="/images/plan.svg" alt="" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        Plan based on your personal life roles!
+                        <a href="plan/index.html" class="button">Plan</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="/images/review.svg" alt="" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        Review your plans (past, present, or Future)!
+                        <a href="review/index.html" class="button">Review</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Explanation</h2>
+            <div>
+                <h3>Phase 1: Recording Your Roles</h3>
+                <ol>
+                    <li>Access the App: Open the planning app on your device.</li>
+                    <li>Identify Your Roles: Think about the various roles you play in your life.</li>
+                    <li>Record Your Roles: Enter each role you've identified into the app.</li>
+                </ol>
+
+                <h3>Phase 2: Planning Your Week</h3>
+                <ol>
+                    <li>Navigate to Weekly Planning Section: Locate the weekly planning section within the app.</li>
+                    <li>Review Your Roles: Consider all aspects of your life as you plan.</li>
+                    <li>Set Priorities: Determine your priorities for the week ahead.</li>
+                    <li>Allocate Time Blocks: Assign specific tasks or activities to each block.</li>
+                    <li>Use Task Lists or Calendars: Utilize app features to organize your plans.</li>
+                    <li>Be Realistic: Ensure your plans are achievable.</li>
+                </ol>
+
+                <h3>Phase 3: Reviewing Your Week</h3>
+                <ol>
+                    <li>Reflect on Your Plans: Revisit the plans you made earlier.</li>
+                    <li>Assess Your Progress: Evaluate how well you adhered to your plans.</li>
+                    <li>Adjust as Needed: Make necessary adjustments based on your review.</li>
+                    <li>Learn and Improve: Use insights gained to enhance future planning efforts.</li>
+                </ol>
+
+                <p>By following these three phases, you can make the most out of a 3-phase planning app to stay
+                    organized, focused, and productive in both your personal and professional life.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        Craig Freeze // WDD 230 // Weekly Planner App // First Things First // &copy; 2024
+    </footer>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 import Task from "./Task.mjs";
 import Plan from "./Plan.mjs";
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, renderTemplate } from "./utils.mjs";
 
 function moveTaskUp() {
     //selects the entire row
@@ -40,6 +40,7 @@ function addTask() {
     taskRole.type = "text";
     taskRole.className = "task-role";
     taskRole.name = "taskRole";
+    taskRole.ariaLabel = "Task Role";
     // "this" comes from the event listener
     taskRole.value = (this == undefined || this.textContent == "Add") ? "" : this.textContent;
 
@@ -52,6 +53,7 @@ function addTask() {
     taskName.type = "text";
     taskName.className = "task-name";
     taskName.name = "taskName";
+    taskName.ariaLabel = "Task Name";
     newCellTaskName.append(taskName);
     newRow.append(newCellTaskName);
 
@@ -62,6 +64,7 @@ function addTask() {
     taskImportance.type = "number";
     taskImportance.className = "task-importance";
     taskImportance.name = "taskImportance";
+    taskImportance.ariaLabel = "Task Importance";
     newCellImportance.append(taskImportance);
     newRow.append(newCellImportance);
 
@@ -72,6 +75,7 @@ function addTask() {
     taskUrgency.type = "number";
     taskUrgency.className = "task-urgency";
     taskUrgency.name = "taskUrgency";
+    taskUrgency.ariaLabel = "Task Urgency";
     newCellUrgency.append(taskUrgency);
     newRow.append(newCellUrgency);
 
@@ -81,6 +85,7 @@ function addTask() {
     taskDescription.type = "text";
     taskDescription.className = "task-description";
     taskDescription.name = "taskDescription";
+    taskDescription.ariaLabel = "Task Description";
     newCellDescription.append(taskDescription);
     newRow.append(newCellDescription);
 
@@ -132,12 +137,14 @@ function addTask() {
     refresh()
 }
 
-function addNewTaskListeners() {
-    let addTask = document.querySelectorAll(".add-task");
-    for (var i = 0; i < addTask.length; i++) {
-        addTask[i].addEventListener('click', addTask)
-    };
-}
+// function addNewTaskListeners() {
+//     let addTask = document.querySelectorAll(".add-task");
+//     for (var i = 0; i < addTask.length; i++) {
+//         addTask[i].addEventListener('click', addTask)
+//     };
+// }
+
+document.querySelector(".add-task").addEventListener("click", addTask);
 
 function addRemoveTaskListeners() {
     let removeTask = document.querySelectorAll(".remove-task");
@@ -226,28 +233,40 @@ function submitFormEventListener(form, url) {
             body: payload,
         })
             .then(res => res.json())
-            // .then(data => console.log(data))
-            // .catch(err => console.log(err))
+        // .then(data => console.log(data))
+        // .catch(err => console.log(err))
     })
 }
 
+// Expands the plan and the associated tasks into an html template.
+function liRolesTemplate(role) {
+    // for (let i = 0; i < roles.length; i++) {
+    let template =
+        `<li class="role">${role}</li>`
+    // }
+    return template;
+}
+
 function refresh() {
-    addNewTaskListeners();
     addMoveTaskEventListeners();
     addRoleListeners();
     addRemoveTaskListeners();
 }
 
 function constructor() {
+    let rolesJSON = getLocalStorage("roles");
+    let roles = JSON.parse(rolesJSON);
+    const ulRoles = document.querySelector(".roles-wrapper");
+    renderTemplate(ulRoles, roles, liRolesTemplate);
     addTask();
     refresh();
-    if (getLocalStorage("plans")===null){
+    if (getLocalStorage("plans") === null) {
         setLocalStorage("plans", JSON.stringify([{ "plans": [] }]));
     }
-    if (getLocalStorage("roles")===null){
+    if (getLocalStorage("roles") === null) {
         setLocalStorage("roles", JSON.stringify([]));
     }
-    if(getLocalStorage("visited")===null){
+    if (getLocalStorage("visited") === null) {
         console.log("Welcome for the first time!")
         setLocalStorage("visited", true);
     }

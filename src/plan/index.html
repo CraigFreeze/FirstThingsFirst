@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sleep Outside | Home</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="../js/header.js" defer></script>
+  <script src="../js/plan.js" type="module" defer></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/index.html" id="logo">First Things First</a>
+        <div class="hamburger-toggle" id="hamburger-menu">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+        <ul class="navigation">
+          <li class="nav-item">
+            <a href="/roles/index.html" class="nav-links"> Roles </a>
+          </li>
+          <li class="nav-item">
+            <a href="/plan/index.html" class="nav-links"> Plan </a>
+          </li>
+          <li class="nav-item">
+            <a href="/review/index.html" class="nav-links"> Review </a>
+          </li>
+          <li class="nav-cta">
+            <a href="/inspiration/index.html" class="button"> Sign Up </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <h1>Plan</h1>
+    <section>
+      <h2>Roles</h2>
+      <!-- Add the ability to click on one of the li items (the roles, and automatically triggers add-task, with focus already set) -->
+      <ul class="roles-wrapper">
+      </ul>
+    </section>
+    <section>
+      <h2>Brain Storm</h2>
+      <form id="taskForm">
+        <label for="planName">Plan Name: <input id="planName" name="planName" type="text"></label>
+        <table id="taskTable">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Task</th>
+              <th>Importance</th>
+              <th>Urgency</th>
+              <th>Description</th>
+              <th>Move</th>
+              <th>Calendar</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <!-- ADD THE ABILITY TO ORDER THE JSON TASK OBJECTS -->
+        <div class="btns-group">
+          <div class="add-task button">Add</div>
+          <input type="submit" class="button" value="Publish">
+          <!-- maybe add a prioritize button that orders by urgency than importance -->
+        </div>
+
+
+        <!-- <div class="task">
+                <input class="task-name" type="text">
+                <input class="task-importance" id="number" type="number">
+                <input class="task-urgency" id="number" type="number">
+                <input class="task-description" type="text">
+                <a class='move-up' href='#'>🔼</a>
+                <a class='move-down' href='#'>🔽</a>
+            </div> -->
+      </form>
+    </section>
+  </main>
+  <div class="progress-bar">
+    <div class="progress-bar-plan"></div>
+    <div class="progress-bar-review"></div>
+  </div>
+  <footer>&copy;NOT a real business</footer>
+</body>
+
+</html>

@@ -26,7 +26,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
-        inspiration: resolve(__dirname, "src/inspiration/index.html"),
+        plan: resolve(__dirname, "src/plan/index.html"),
         roles: resolve(__dirname, "src/roles/index.html"),
         review: resolve(__dirname, "src/review/index.html"),
         proxy: {
