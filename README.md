@@ -1,5 +1,7 @@
 # First Things First
 
+https://firstthingsfirst.netlify.app/
+
 ## Description
 
 Vite based weekly planner!
