@@ -28,7 +28,7 @@ form.addEventListener("submit", (e) => {
     .then((data) =>
       successfulRes(
         "/index.html",
-        "Successfully Saved to Server! You'll be redirected to home page shortly!",
+        "Successfully Posted (Saved) to Server! You'll be redirected to home page shortly!",
         data
       )
     )

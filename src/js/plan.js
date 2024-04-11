@@ -308,7 +308,7 @@ function submitFormEventListener(form, url) {
       .then((data) =>
         successfulRes(
           "/review/index.html",
-          "Successfully Saved to Server! You'll be redirected shortly.",
+          "Successfully Posted (Saved) to Server! You'll be redirected shortly.",
           data
         )
       )
