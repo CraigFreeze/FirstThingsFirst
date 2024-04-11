@@ -323,6 +323,13 @@ function liRolesTemplate(role) {
   return template;
 }
 
+let rolesJSON = getLocalStorage("roles");
+let roles = JSON.parse(rolesJSON);
+const ulRoles = document.querySelector("#rolesWrapper");
+renderTemplate(ulRoles, roles, liRolesTemplate);
+addTask();
+refresh();
+
 function refresh() {
   addMoveTaskEventListeners();
   addRoleListeners();
