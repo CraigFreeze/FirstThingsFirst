@@ -340,7 +340,7 @@ function refresh() {
 
 submitFormEventListener(
   document.querySelector("form"),
-  "http://httpbin.org/post"
+  "https://httpbin.org/post"
 );
 
 constructor();

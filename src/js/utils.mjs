@@ -23,7 +23,7 @@ export function camelize(str) {
     }).replace(/\s+/g, '');
 }
 
-const delay = async (ms) =>  new Promise(res => setTimeout(res, ms));
+const delay = async (ms) => new Promise(res => setTimeout(res, ms));
 
 export async function successfulRes(redirect, message, data = "") {
     console.log(message, data);
@@ -33,7 +33,7 @@ export async function successfulRes(redirect, message, data = "") {
 }
 
 export function getCalendarLink(name = "", description) {
-    let calendarUrl = `http://www.google.com/calendar/event?action=TEMPLATE&text=${name}&details=${description}`;
+    let calendarUrl = `https://www.google.com/calendar/event?action=TEMPLATE&text=${name}&details=${description}`;
     calendarUrl = calendarUrl.replace(/ /g, "%20");
     return calendarUrl;
 }
@@ -71,13 +71,13 @@ export function alertMessage(message, scroll = true) {
 export function constructor() {
     let array = [];
     if (getLocalStorage("plans") === null) {
-      setLocalStorage("plans", JSON.stringify({ plans: array }));
+        setLocalStorage("plans", JSON.stringify({ plans: array }));
     }
     if (getLocalStorage("roles") === null) {
-      setLocalStorage("roles", JSON.stringify([]));
+        setLocalStorage("roles", JSON.stringify([]));
     }
     if (getLocalStorage("visited") === null) {
-      console.log("Welcome for the first time!");
-      setLocalStorage("visited", true);
+        console.log("Welcome for the first time!");
+        setLocalStorage("visited", true);
     }
-  }
+}

@@ -20,7 +20,7 @@ form.addEventListener("submit", (e) => {
   let payload = JSON.stringify(Object.fromEntries(formData));
   console.log(formData);
   // let payload = JSON.stringify(plan);
-  fetch("http://httpbin.org/post", {
+  fetch("https://httpbin.org/post", {
     method: "POST",
     body: payload,
   })
