@@ -9,7 +9,8 @@ export default defineConfig({
       "/api": {
         target: "https://zenquotes.io/api/random",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        // rewrite: (path) => path.replace(/^\/api/, ""),
+        secure: false
       },
     },
   },
@@ -19,7 +20,8 @@ export default defineConfig({
       "/api": {
         target: "https://zenquotes.io/api/random",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        // rewrite: (path) => path.replace(/^\/api/, ""),
+        secure: false
       },
     },
     rollupOptions: {
@@ -29,13 +31,13 @@ export default defineConfig({
         roles: resolve(__dirname, "src/roles/index.html"),
         review: resolve(__dirname, "src/review/index.html"),
         register: resolve(__dirname, "src/register/index.html"),
-        proxy: {
-          "/api": {
-            target: "https://zenquotes.io/api/random",
-            changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/api/, ""),
-          },
-        },
+      //   proxy: {
+      //     "/api": {
+      //       target: "https://zenquotes.io/api/random",
+      //       changeOrigin: true,
+      //       rewrite: (path) => path.replace(/^\/api/, ""),
+      //     },
+      //   },
       },
     },
   },

@@ -1,4 +1,12 @@
-import { successfulRes } from "./utils.mjs";
+import { successfulRes, constructor } from "./utils.mjs";
+
+const menu = document.querySelector("#hamburger-menu");
+const menuUl = document.querySelector(".navigation");
+
+menu.addEventListener("click", () => {
+  menu.classList.toggle("is-active");
+  menuUl.classList.toggle("active");
+});
 
 const currentDateInput = document.querySelector(".currentDateInput");
 const today = new Date().toISOString().slice(0, 10); // Get date in YYYY-MM-DD format
@@ -72,3 +80,4 @@ document.querySelector("#rightReview").addEventListener("click", () => {
 });
 
 renderReview();
+constructor()

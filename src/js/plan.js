@@ -3,37 +3,81 @@ import Plan from "./Plan.mjs";
 import {
   getLocalStorage,
   setLocalStorage,
-  renderTemplate,
   successfulRes,
+  constructor
 } from "./utils.mjs";
 
 window.onbeforeunload = function () {
   return "Sure you want to leave?";
 };
 
-//! ////////////////////////////////////////////////
-//! ////////////////////////////////////////////////
+window.onload = async function () {
+  renderQuote(await getQuote(api_proxy_url));
+};
 
-// THIS IS A PROXY (SEE VITE CONFIG)
+const menu = document.querySelector("#hamburger-menu");
+const menuUl = document.querySelector(".navigation");
+
+menu.addEventListener("click", () => {
+  menu.classList.toggle("is-active");
+  menuUl.classList.toggle("active");
+});
+
+
+//? -------------------
 const api_proxy_url = "/api";
 
 async function getQuote(url) {
+  console.log(url);
   const response = await fetch(url);
+  console.log(response);
   var data = await response.json();
+  console.log(data);
   return await data[0];
 }
 
 function renderQuote(quote) {
-  // console.log(quote)
+  console.log("quote")
+  console.log(quote)
   document.querySelector("#quote").textContent = quote.q;
   document.querySelector("#quote-author").textContent = `-- ${quote.a}`;
 }
 
-renderQuote(getQuote(api_proxy_url));
+// renderQuote(getQuote("https://zenquotes.io/api/random"));
 
-document.querySelector("#newQuote").addEventListener("click", async () => {
+
+document.querySelector("#newQuote").addEventListener("click", async (e) => {
   renderQuote(await getQuote(api_proxy_url));
-});
+})
+//? ------------------------
+
+//! ////////////////////////////////////////////////
+//! ////////////////////////////////////////////////
+
+// THIS IS A PROXY (SEE VITE CONFIG)
+// const api_proxy_url = "/api";
+
+// async function getQuote(url) {
+//   console.log(url);
+//   const response = await fetch(url);
+//   console.log(response);
+//   var data = await response.json();;
+//   return await data[0];
+// }
+
+// function renderQuote(quote) {
+//   console.log(quote)
+//   document.querySelector("#quote").textContent = quote.q;
+//   document.querySelector("#quote-author").textContent = `-- ${quote.a}`;
+// }
+
+// // console.log(await getQuote(api_proxy_url))
+
+// renderQuote(getQuote(api_proxy_url));
+
+// document.querySelector("#newQuote").addEventListener("click", async () => {
+//   renderQuote(await getQuote(api_proxy_url));
+// });
 
 //! ////////////////////////////////////////////////
 //! ////////////////////////////////////////////////
@@ -283,26 +327,6 @@ function refresh() {
   addMoveTaskEventListeners();
   addRoleListeners();
   addRemoveTaskListeners();
-}
-
-function constructor() {
-  let rolesJSON = getLocalStorage("roles");
-  let roles = JSON.parse(rolesJSON);
-  const ulRoles = document.querySelector("#rolesWrapper");
-  renderTemplate(ulRoles, roles, liRolesTemplate);
-  addTask();
-  refresh();
-  let array = [];
-  if (getLocalStorage("plans") === null) {
-    setLocalStorage("plans", JSON.stringify({ plans: array }));
-  }
-  if (getLocalStorage("roles") === null) {
-    setLocalStorage("roles", JSON.stringify([]));
-  }
-  if (getLocalStorage("visited") === null) {
-    console.log("Welcome for the first time!");
-    setLocalStorage("visited", true);
-  }
 }
 
 submitFormEventListener(

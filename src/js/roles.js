@@ -4,11 +4,21 @@ import {
   camelize,
   setLocalStorage,
   successfulRes,
+  constructor
 } from "./utils.mjs";
 
 window.onbeforeunload = function () {
   return "Sure you want to leave?";
 };
+
+const menu = document.querySelector("#hamburger-menu");
+const menuUl = document.querySelector(".navigation");
+
+menu.addEventListener("click", () => {
+  menu.classList.toggle("is-active");
+  menuUl.classList.toggle("active");
+});
+
 
 let rolesJSON = getLocalStorage("roles");
 let roles = JSON.parse(rolesJSON);
@@ -64,6 +74,5 @@ form.addEventListener("change", () => {
 let wrapper = document.querySelector(".roles-wrapper");
 renderTemplate(wrapper, roles, inputRolesTemplate);
 
-// document.querySelector("#refreshRoles").addEventListener("click", (e) => {
 
-// })
+constructor()

@@ -64,3 +64,23 @@ export function alertMessage(message, scroll = true) {
     if (scroll)
         window.scrollTo(0, 0);
 }
+
+export function constructor() {
+    let rolesJSON = getLocalStorage("roles");
+    let roles = JSON.parse(rolesJSON);
+    const ulRoles = document.querySelector("#rolesWrapper");
+    renderTemplate(ulRoles, roles, liRolesTemplate);
+    addTask();
+    refresh();
+    let array = [];
+    if (getLocalStorage("plans") === null) {
+      setLocalStorage("plans", JSON.stringify({ plans: array }));
+    }
+    if (getLocalStorage("roles") === null) {
+      setLocalStorage("roles", JSON.stringify([]));
+    }
+    if (getLocalStorage("visited") === null) {
+      console.log("Welcome for the first time!");
+      setLocalStorage("visited", true);
+    }
+  }

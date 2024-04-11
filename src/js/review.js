@@ -1,4 +1,12 @@
-import { getLocalStorage, renderTemplate, getCalendarLink } from "./utils.mjs";
+import { getLocalStorage, renderTemplate, getCalendarLink, constructor } from "./utils.mjs";
+
+const menu = document.querySelector("#hamburger-menu");
+const menuUl = document.querySelector(".navigation");
+
+menu.addEventListener("click", () => {
+  menu.classList.toggle("is-active");
+  menuUl.classList.toggle("active");
+});
 
 let plansJSON = getLocalStorage("plans");
 plansJSON = JSON.parse(plansJSON);
@@ -63,3 +71,4 @@ function planTemplate(plan) {
 }
 
 renderTemplate(wrapper, plans, planTemplate);
+constructor()
