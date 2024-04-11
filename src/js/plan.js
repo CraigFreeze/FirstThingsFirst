@@ -26,10 +26,9 @@ menu.addEventListener("click", () => {
 
 
 //? -------------------
-const api_proxy_url = "/api";
+const api_proxy_url = "/api/";
 
 async function getQuote(url) {
-  console.log(url);
   const response = await fetch(url);
   console.log(response);
   var data = await response.json();
