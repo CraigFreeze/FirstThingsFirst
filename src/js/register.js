@@ -23,6 +23,7 @@ form.addEventListener("submit", (e) => {
   fetch("https://httpbin.org/post", {
     method: "POST",
     body: payload,
+    mode: "no-cors"
   })
     .then((res) => res.json())
     .then((data) =>
