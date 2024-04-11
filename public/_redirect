@@ -1,3 +1,0 @@
-/api/*  https://zenquotes.io/api/random  200
-
-/apiPost/* https://httpbin.org/post 200
