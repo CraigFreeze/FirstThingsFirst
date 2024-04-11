@@ -4,3 +4,10 @@
   status = 200
   force = true
   headers = {X-From = "Netlify"}
+
+[[redirects]]
+  from = "/apiPost/"
+  to = "https://httpbin.org/post"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}

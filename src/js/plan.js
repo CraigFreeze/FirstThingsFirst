@@ -302,8 +302,7 @@ function submitFormEventListener(form, url) {
     let payload = JSON.stringify(plan);
     fetch(url, {
       method: "POST",
-      body: payload,
-      mode: "no-cors"
+      body: payload
     })
       .then((res) => res.json())
       .then((data) =>
