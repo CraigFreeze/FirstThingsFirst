@@ -65,13 +65,10 @@ export function alertMessage(message, scroll = true) {
         window.scrollTo(0, 0);
 }
 
+
+
+
 export function constructor() {
-    let rolesJSON = getLocalStorage("roles");
-    let roles = JSON.parse(rolesJSON);
-    const ulRoles = document.querySelector("#rolesWrapper");
-    renderTemplate(ulRoles, roles, liRolesTemplate);
-    addTask();
-    refresh();
     let array = [];
     if (getLocalStorage("plans") === null) {
       setLocalStorage("plans", JSON.stringify({ plans: array }));

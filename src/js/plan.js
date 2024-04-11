@@ -4,7 +4,8 @@ import {
   getLocalStorage,
   setLocalStorage,
   successfulRes,
-  constructor
+  constructor,
+  renderTemplate
 } from "./utils.mjs";
 
 window.onbeforeunload = function () {
@@ -314,6 +315,7 @@ function submitFormEventListener(form, url) {
       .catch((err) => console.log(err));
   });
 }
+
 
 // Expands the plan and the associated tasks into an html template.
 function liRolesTemplate(role) {
